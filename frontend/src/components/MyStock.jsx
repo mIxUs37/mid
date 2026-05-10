@@ -13,7 +13,7 @@ const MyStock = ({ myStock, onStockCreated, onPriceUpdated }) => {
     e.preventDefault();
     try {
       await axios.post(
-        'https://pex-backend-jxkb.onrender.com/api/stocks/create',
+        '/api/stocks/create',
         { ticker },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -32,7 +32,7 @@ const MyStock = ({ myStock, onStockCreated, onPriceUpdated }) => {
 
     try {
       await axios.put(
-        'https://pex-backend-jxkb.onrender.com/api/stocks/update-price',
+        '/api/stocks/update-price',
         { ticker: myStock.ticker, price: parseFloat(newPrice) },
         { headers: { Authorization: `Bearer ${token}` } }
       );

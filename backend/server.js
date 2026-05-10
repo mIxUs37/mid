@@ -4,6 +4,7 @@ const http = require('http');
 const WebSocket = require('ws');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 
 const authRoutes = require('./routes/auth');
 const { router: stockRoutes, setBroadcastFunction } = require('./routes/stocks');
@@ -17,6 +18,9 @@ const wss = new WebSocket.Server({ server });
 app.use(cors());
 app.use(express.json());
 
+// Serve static frontend files
+app.use(express.static('../frontend/dist'));
+
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/pex')
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
@@ -25,8 +29,14 @@ app.use('/api/auth', authRoutes);
 app.use('/api/stocks', stockRoutes);
 app.use('/api/trading', tradingRoutes);
 
-app.get('/', (req, res) => {
+// API health check
+app.get('/api/health', (req, res) => {
   res.json({ message: 'PEX Backend Server Running' });
+});
+
+// React Router fallback - serve index.html for all non-API routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 
 const clients = new Map();

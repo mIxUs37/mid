@@ -8,7 +8,7 @@ export const useWebSocket = (token, onMessage) => {
     if (!token) return;
 
     try {
-      wsRef.current = new WebSocket('wss://pex-backend-jxkb.onrender.com', [token]);
+      wsRef.current = new WebSocket(`wss://${window.location.host}`, [token]);
 
       wsRef.current.onopen = () => {
         console.log('WebSocket connected');
