@@ -15,7 +15,7 @@ const Dashboard = () => {
 
   const fetchStocks = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/stocks');
+      const response = await axios.get('https://pex-backend-jxkb.onrender.com/api/stocks');
       setStocks(response.data);
       const prices = {};
       response.data.forEach(stock => {
@@ -29,7 +29,7 @@ const Dashboard = () => {
 
   const fetchMyStock = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/stocks/my-stock', {
+      const response = await axios.get('https://pex-backend-jxkb.onrender.com/api/stocks/my-stock', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setMyStock(response.data);
@@ -42,7 +42,7 @@ const Dashboard = () => {
 
   const fetchPortfolio = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/trading/portfolio', {
+      const response = await axios.get('https://pex-backend-jxkb.onrender.com/api/trading/portfolio', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setPortfolio(response.data);

@@ -15,7 +15,7 @@ const StockMarket = ({ stocks, myStockTicker, onStocksUpdated }) => {
 
     try {
       await axios.post(
-        'http://localhost:3001/api/trading/buy',
+        'https://pex-backend-jxkb.onrender.com/api/trading/buy',
         { ticker: selectedStock.ticker, shares: parseInt(buyAmount) },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -33,7 +33,7 @@ const StockMarket = ({ stocks, myStockTicker, onStocksUpdated }) => {
 
     try {
       await axios.post(
-        'http://localhost:3001/api/trading/sell',
+        'https://pex-backend-jxkb.onrender.com/api/trading/sell',
         { ticker: selectedStock.ticker, shares: parseInt(sellAmount) },
         { headers: { Authorization: `Bearer ${token}` } }
       );

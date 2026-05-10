@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
     const verifyToken = async () => {
       if (token) {
         try {
-          const response = await axios.get('http://localhost:3001/api/auth/me', {
+          const response = await axios.get('https://pex-backend-jxkb.onrender.com/api/auth/me', {
             headers: { Authorization: `Bearer ${token}` }
           });
           setUser(response.data);
@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      const response = await axios.post('http://localhost:3001/api/auth/login', {
+      const response = await axios.post('https://pex-backend-jxkb.onrender.com/api/auth/login', {
         username,
         password
       });
@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (username, password) => {
     try {
-      const response = await axios.post('http://localhost:3001/api/auth/register', {
+      const response = await axios.post('https://pex-backend-jxkb.onrender.com/api/auth/register', {
         username,
         password
       });
