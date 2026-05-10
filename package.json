@@ -7,6 +7,9 @@
     "build": "cd frontend && npm install && npm run build",
     "install-deps": "cd backend && npm install && cd ../frontend && npm install"
   },
+  "devDependencies": {
+    "vite": "^5.0.8"
+  },
   "engines": {
     "node": ">=18.0.0"
   }
