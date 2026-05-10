@@ -19,7 +19,7 @@ app.use(cors());
 app.use(express.json());
 
 // Serve static frontend files
-app.use(express.static('../frontend/dist'));
+app.use(express.static('./dist'));
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/pex')
   .then(() => console.log('Connected to MongoDB'))
@@ -36,7 +36,7 @@ app.get('/api/health', (req, res) => {
 
 // React Router fallback - serve index.html for all non-API routes
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+  res.sendFile(path.join(__dirname, './dist/index.html'));
 });
 
 const clients = new Map();

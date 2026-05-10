@@ -4,7 +4,7 @@
   "description": "The Personal Exchange - Full Stack Application",
   "scripts": {
     "start": "cd backend && npm start",
-    "build": "cd frontend && npm install && npm run build && cd ../backend && npm install && npm start",
+    "build": "cd frontend && npm install && npm run build",
     "install-deps": "cd backend && npm install && cd ../frontend && npm install"
   },
   "engines": {
