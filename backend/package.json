@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "build-frontend": "cd ../frontend && npm install && npx vite build",
+    "build-frontend": "cd ../frontend && npm install && npx vite build --outDir=../backend/dist",
     "build": "npm run build-frontend && node server.js"
   },
   "dependencies": {
