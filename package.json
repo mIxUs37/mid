@@ -1,0 +1,13 @@
+{
+  "name": "pex-fullstack",
+  "version": "1.0.0",
+  "description": "The Personal Exchange - Full Stack Application",
+  "scripts": {
+    "start": "cd backend && npm start",
+    "build": "cd backend && npm run build",
+    "install-deps": "cd backend && npm install && cd ../frontend && npm install"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
