@@ -148,20 +148,22 @@ const Dashboard = () => {
                 />
               </div>
             </div>
-            <div className="text-right">
-              <p className="text-gray-400 text-sm">Net Worth</p>
-              <p className="text-xl font-bold text-green-400">${netWorth.toFixed(2)}</p>
+            <div className="flex justify-between items-center mb-8">
+              <div className="text-right">
+                <p className="text-gray-400 text-sm">Net Worth</p>
+                <p className="text-xl font-bold text-green-400">${netWorth.toFixed(2)}</p>
+              </div>
+              <div className="text-right">
+                <p className="text-gray-400 text-sm">Wallet</p>
+                <p className="text-lg">${user.walletBalance.toFixed(2)}</p>
+              </div>
+              <button
+                onClick={logout}
+                className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded transition"
+              >
+                Logout
+              </button>
             </div>
-            <div className="text-right">
-              <p className="text-gray-400 text-sm">Wallet</p>
-              <p className="text-lg">${user.walletBalance.toFixed(2)}</p>
-            </div>
-            <button
-              onClick={logout}
-              className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded transition"
-            >
-              Logout
-            </button>
           </>
         ) : currentView === 'profile' ? (
           <Profile />
