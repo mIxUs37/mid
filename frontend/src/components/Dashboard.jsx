@@ -127,27 +127,6 @@ const Dashboard = () => {
         </div>
         {currentView === 'dashboard' ? (
           <>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-              <div>
-                <MyStock 
-                  myStock={myStock} 
-                  onStockCreated={fetchMyStock}
-                  onPriceUpdated={fetchStocks}
-                />
-                <Portfolio 
-                  portfolio={portfolio}
-                  tickerPrices={tickerPrices}
-                  onPortfolioUpdated={fetchPortfolio}
-                />
-              </div>
-              <div>
-                <StockMarket 
-                  stocks={stocks}
-                  myStockTicker={myStock?.ticker}
-                  onStocksUpdated={fetchStocks}
-                />
-              </div>
-            </div>
             <div className="bg-white border-t border-gray-200 px-6 py-4">
               <div className="max-w-7xl mx-auto flex justify-between items-center">
                 <div className="flex space-x-8">
@@ -166,6 +145,27 @@ const Dashboard = () => {
                     Выйти
                   </button>
                 </div>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div>
+                <MyStock 
+                  myStock={myStock} 
+                  onStockCreated={fetchMyStock}
+                  onPriceUpdated={fetchStocks}
+                />
+                <Portfolio 
+                  portfolio={portfolio}
+                  tickerPrices={tickerPrices}
+                  onPortfolioUpdated={fetchPortfolio}
+                />
+              </div>
+              <div>
+                <StockMarket 
+                  stocks={stocks}
+                  myStockTicker={myStock?.ticker}
+                  onStocksUpdated={fetchStocks}
+                />
               </div>
             </div>
           </>
