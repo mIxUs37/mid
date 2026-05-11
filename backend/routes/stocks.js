@@ -58,6 +58,15 @@ router.put('/update-price', authenticateToken, async (req, res) => {
       return res.status(400).json({ error: 'Ticker and price required' });
     }
 
+    const parsedPrice = parseFloat(price);
+    if (isNaN(parsedPrice) || parsedPrice <= 0) {
+      return res.status(400).json({ error: 'Price must be a valid number greater than 0' });
+    }
+
+    if (parsedPrice < 0.01) {
+      return res.status(400).json({ error: 'Minimum price is $0.01' });
+    }
+
     const stock = await Stock.findOne({ ticker: ticker.toUpperCase() });
     if (!stock) {
       return res.status(404).json({ error: 'Stock not found' });
@@ -67,7 +76,7 @@ router.put('/update-price', authenticateToken, async (req, res) => {
       return res.status(403).json({ error: 'Forbidden: You can only update your own stock price' });
     }
 
-    stock.price = parseFloat(price);
+    stock.price = parsedPrice;
     await stock.save();
 
     if (broadcastTickerUpdate) {
