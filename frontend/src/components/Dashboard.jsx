@@ -126,7 +126,7 @@ const Dashboard = () => {
           </div>
         </div>
         {currentView === 'dashboard' ? (
-          <div>
+          <>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
               <div>
                 <MyStock 
@@ -162,34 +162,10 @@ const Dashboard = () => {
             >
               Logout
             </button>
-          </div>
+          </>
         ) : currentView === 'profile' ? (
           <Profile />
         ) : null}
-      </div>
-    </div>
-      <div className="max-w-7xl mx-auto px-6 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div>
-            <MyStock 
-              myStock={myStock} 
-              onStockCreated={fetchMyStock}
-              onPriceUpdated={fetchStocks}
-            />
-            <Portfolio 
-              portfolio={portfolio}
-              tickerPrices={tickerPrices}
-              onPortfolioUpdated={fetchPortfolio}
-            />
-          </div>
-          <div>
-            <StockMarket 
-              stocks={stocks}
-              myStockTicker={myStock?.ticker}
-              onStocksUpdated={fetchStocks}
-            />
-          </div>
-        </div>
       </div>
     </div>
   );

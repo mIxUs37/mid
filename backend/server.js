@@ -27,7 +27,6 @@ app.use('/api/auth', authRoutes);
 app.use('/api/stocks', stockRoutes);
 app.use('/api/trading', tradingRoutes);
 
-// API health check
 app.get('/api/health', (req, res) => {
   res.json({ message: 'PEX Backend Server Running' });
 });
