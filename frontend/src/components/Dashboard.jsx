@@ -122,6 +122,12 @@ const Dashboard = () => {
               >
                 Профиль
               </button>
+              <button
+                onClick={logout}
+                className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded text-sm transition"
+              >
+                Выйти
+              </button>
             </div>
           </div>
         </div>
@@ -138,12 +144,6 @@ const Dashboard = () => {
                     <p className="text-gray-400 text-sm">Wallet</p>
                     <p className="text-lg">${user.walletBalance.toFixed(2)}</p>
                   </div>
-                  <button
-                    onClick={logout}
-                    className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded text-sm transition"
-                  >
-                    Выйти
-                  </button>
                 </div>
               </div>
             </div>
