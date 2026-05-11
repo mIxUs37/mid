@@ -5,6 +5,7 @@ import axios from 'axios';
 import StockMarket from './StockMarket';
 import MyStock from './MyStock';
 import Portfolio from './Portfolio';
+import Profile from './Profile';
 
 const Dashboard = () => {
   const { user, token, logout } = useAuth();
@@ -12,6 +13,7 @@ const Dashboard = () => {
   const [myStock, setMyStock] = useState(null);
   const [portfolio, setPortfolio] = useState([]);
   const [tickerPrices, setTickerPrices] = useState({});
+  const [currentView, setCurrentView] = useState('dashboard');
 
   const fetchStocks = async () => {
     try {
@@ -91,11 +93,61 @@ const Dashboard = () => {
   const netWorth = calculateNetWorth();
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      <nav className="bg-gray-800 border-b border-gray-700 px-6 py-4">
-        <div className="flex justify-between items-center max-w-7xl mx-auto">
-          <h1 className="text-2xl font-bold text-blue-400">PEX</h1>
-          <div className="flex items-center gap-6">
+    <div className="min-h-screen bg-gray-50 py-8">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="mb-8">
+          <div className="flex justify-between items-center">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">PEX - Personal Exchange</h1>
+              <p className="text-gray-600 mt-2">Добро пожаловать, {user?.username}!</p>
+            </div>
+            <div className="flex space-x-4">
+              <button
+                onClick={() => setCurrentView('dashboard')}
+                className={`px-4 py-2 rounded-md font-medium transition-colors duration-200 ${
+                  currentView === 'dashboard'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+              >
+                Дашборд
+              </button>
+              <button
+                onClick={() => setCurrentView('profile')}
+                className={`px-4 py-2 rounded-md font-medium transition-colors duration-200 ${
+                  currentView === 'profile'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+              >
+                Профиль
+              </button>
+            </div>
+          </div>
+        </div>
+        {currentView === 'dashboard' ? (
+          <div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+              <div>
+                <MyStock 
+                  myStock={myStock} 
+                  onStockCreated={fetchMyStock}
+                  onPriceUpdated={fetchStocks}
+                />
+                <Portfolio 
+                  portfolio={portfolio}
+                  tickerPrices={tickerPrices}
+                  onPortfolioUpdated={fetchPortfolio}
+                />
+              </div>
+              <div>
+                <StockMarket 
+                  stocks={stocks}
+                  myStockTicker={myStock?.ticker}
+                  onStocksUpdated={fetchStocks}
+                />
+              </div>
+            </div>
             <div className="text-right">
               <p className="text-gray-400 text-sm">Net Worth</p>
               <p className="text-xl font-bold text-green-400">${netWorth.toFixed(2)}</p>
@@ -111,9 +163,11 @@ const Dashboard = () => {
               Logout
             </button>
           </div>
-        </div>
-      </nav>
-
+        ) : currentView === 'profile' ? (
+          <Profile />
+        ) : null}
+      </div>
+    </div>
       <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div>
