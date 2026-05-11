@@ -93,13 +93,13 @@ const Dashboard = () => {
   const netWorth = calculateNetWorth();
 
   return (
-    <div className="min-h-screen bg-white py-8">
+    <div className="min-h-screen bg-gray-800 py-8">
       <div className="max-w-7xl mx-auto px-4">
         <div className="mb-8">
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">PEX - Personal Exchange</h1>
-              <p className="text-gray-600 mt-2">Добро пожаловать, {user?.username}!</p>
+              <h1 className="text-3xl font-bold text-white">PEX - Personal Exchange</h1>
+              <p className="text-gray-300 mt-2">Добро пожаловать, {user?.username}!</p>
             </div>
             <div className="flex space-x-4">
               <button
